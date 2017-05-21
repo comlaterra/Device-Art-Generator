@@ -1,4 +1,4 @@
-﻿/*==========================================================
+/*==========================================================
 
 Device Art Generator - Photoshop Script
 Author: Ashung Hung
@@ -68,7 +68,7 @@ var devices = [
 
 ];
 
-function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground) {
+function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground, shouldResize) {
     var currentDevice, devicePath,
         docName, docWidth, docHeight,
         screenWidth, screenHeight,
@@ -283,11 +283,8 @@ function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground
                     app.preferences.interpolation = ResampleMethod.BILINEAR;
                     activeDocument.activeLayer.resize(actualScreenWidth * 100 / designImageWidth, actualScreenHeight * 100 / designImageHeight, AnchorPosition.TOPLEFT);
                 } else {
-                    var msg = {
-                        en: 'Your design is no match the screen size, Do you want to resize image?',
-                        zh: '你的设计与屏幕尺寸不匹配, 是否要改变图像大小?'
-                    }
-                    if(confirm(localize(msg))) {
+
+                    var doResize = function(){
                         if(designImageWidth > screenWidth) {
                             app.preferences.interpolation = ResampleMethod.BILINEAR;
                         } else if (screenWidth % designImageWidth == 0) {
@@ -296,6 +293,18 @@ function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground
                             app.preferences.interpolation = ResampleMethod.BICUBICSMOOTHER;
                         }
                         activeDocument.activeLayer.resize(screenWidth * 100 / designImageWidth, screenHeight * 100 / designImageHeight, AnchorPosition.TOPLEFT);
+                    }
+
+                    if(!shouldResize){
+                        var msg = {
+                            en: 'Your design is no match the screen size, Do you want to resize image?',
+                            zh: '你的设计与屏幕尺寸不匹配, 是否要改变图像大小?'
+                        }
+                        if(confirm(localize(msg))) {
+                            doResize();
+                        }
+                    }else{
+                        doResize();
                     }
                 }
                 var newPosX = activeDocument.activeLayer.bounds[0].as('px');

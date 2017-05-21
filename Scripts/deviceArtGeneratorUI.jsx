@@ -65,6 +65,10 @@ var lang = {
         en: 'Generate',
         zh: '生成前景图层'
     },
+    alwaysResizeText:{
+        en: 'Always resize the screen',
+        zh: 'Always resize the screen'
+    },
     okBtnText: {
         en: 'Generate',
         zh: '生成'
@@ -141,6 +145,11 @@ var layoutRes =
             orientation: 'row',\
             checkbox: Checkbox { value: true },\
             label: StaticText { text: '" + localize(lang.foregroundText) + "'}\
+        }\
+        resize: Group {\
+            orientation: 'row',\
+            checkbox: Checkbox { value: true },\
+            label: StaticText { text: '" + localize(lang.alwaysResizeText) + "'}\
         }\
     },\
     buttons: Group {\
@@ -299,7 +308,7 @@ designInput.onChange = function() {
 docDropDownList.selection = docDropDownList.items[0];
 
 // Options CheckBox 
-var optionItems = ['portrait', 'transparent', 'shadow', 'foreground'];
+var optionItems = ['portrait', 'transparent', 'shadow', 'foreground', 'resize'];
 for(var i = 0; i < optionItems.length; i ++) {
     win.options[optionItems[i]].label.onClick = function () {
         var tmp = this.parent;
@@ -314,10 +323,11 @@ win.buttons.okBtn.onClick = function() {
     var transparentBackground = win.options.transparent.checkbox.value;
     var hasShadow = win.options.shadow.checkbox.value;
     var hasForeground = win.options.foreground.checkbox.value;
+    var shouldResize = win.options.resize.checkbox.value;
     if(designFilePath == null) {
         designFile = null;
         //alert(deviceId+', '+ designFile + ', ' + isPortrait +', ' + transparentBackground +', ' + hasShadow +', ' + hasForeground);
-        createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground);
+        createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground, shouldResize);
         win.hide();
     } else {
         if(!designFile.exists) {
@@ -329,7 +339,7 @@ win.buttons.okBtn.onClick = function() {
             return false;
         } else {
             //alert(deviceId+', '+ designFile + ', ' + isPortrait +', ' + transparentBackground +', ' + hasShadow +', ' + hasForeground);
-            createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground);
+            createDeviceArt(deviceId, designFile, isPortrait, transparentBackground, hasShadow, hasForeground, shouldResize);
             win.hide();
         }
     }
