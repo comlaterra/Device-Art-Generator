@@ -188,7 +188,7 @@ function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground
             }
         } else {
             var msg = {
-                en: 'The design file is not exists.',
+                en: 'The design file does not exist.',
                 zh: '设计文件不存在.'
             };
             alert(localize(msg));
