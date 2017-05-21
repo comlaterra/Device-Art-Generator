@@ -174,13 +174,6 @@ function createDeviceArt(deviceId, designFile, isPortrait, transparentBackground
                                     documents[i].save();
                                 }
                             }
-                        } else {
-                            var msg = {
-                                en: 'Dimension Does Not Match. \rThe Design file must be %1x%2px, current document is %3x%4px.',
-                                zh: '尺寸不符. \r设计图片必须为%1x%2px, 当前文件尺寸为%3x%4px.'
-                            };
-                            alert(localize(msg, actualScreenWidth, designImageHeight, designImageWidth, designImageHeight));
-                            return false;
                         }
                         break;
                     }
