@@ -133,7 +133,7 @@ var layoutRes =
         },\
         transparent: Group {\
             orientation: 'row',\
-            checkbox: Checkbox { value: false },\
+            checkbox: Checkbox { value: true },\
             label: StaticText { text: '" + localize(lang.transparentText) + "'}\
         },\
         shadow: Group {\
