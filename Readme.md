@@ -1,6 +1,6 @@
 # Device Art Generator for Photoshop #
 
-Photoshop Scripts for iOS and Android UI designers to generate the device art. 
+Photoshop Scripts for iOS and Android UI designers to generate the device art.
 
 ### How to use ###
 
@@ -18,6 +18,7 @@ Run "Scripts/deviceArtGeneratiorUI.jsx" set the Device, Design and Options, then
 <tr><td><code>[, transparentBackground] </code></td><td><code>Boolean </code></td><td>Background of Psd document, (default: true).</td></tr>
 <tr><td><code>[, hasShadow] </code></td><td><code>Boolean </code></td><td>Shadow of devices, (default: true).</td></tr>
 <tr><td><code>[, hasForeground]);</code></td><td><code>Boolean  </code></td><td>glare of device, (default: true).</td></tr>
+<tr><td><code>[, shouldResize]);</code></td><td><code>Boolean  </code></td><td>resize content, (default: true).</td></tr>
 </table>
 
 Create a new jsx file in "Device_Art_Generator/Scripts" folder. Open and type  the code below:
@@ -28,7 +29,7 @@ Create a new jsx file in "Device_Art_Generator/Scripts" folder. Open and type  t
 
     createDeviceArt('iPhone5_black', true, true, false);
 
-You can change the last line like below: 
+You can change the last line like below:
 
     createDeviceArt('nexus_4'); //Google Nexus 4 device with transparent background.
 
@@ -41,17 +42,17 @@ or
     createDeviceArt('iPhone5_black_3d'); //iPhone 5 3D view with transparent background.
 
 or
-    
+
     createDeviceArt('iPhone4s_black', null); //iPhone 4s black device without design.
 
 or
-    
+
     createDeviceArt('iPhone5_black', activeDocument.fullName, true, false, true, true); //Use current document as design.
 
 or
-    
+
     createDeviceArt('iPhone5_black', File('~/design.psd'), true, false, true, true); //Use a exists document as design.
-    
+
 Save document, double click the jsx file to run. If has trouble go to Photoshop, run this script form the 'File' -> 'Scripts' -> 'Browse...' menu.
 
 ### Support Devices:
@@ -83,6 +84,6 @@ Save document, double click the jsx file to run. If has trouble go to Photoshop,
 
 ### THANKS ###
 
-All Android devices image download from [Device Art Generator](http://developer.android.com/distribute/promote/device-art.html) and [android-ui-utils project](http://android-ui-utils.googlecode.com). 
+All Android devices image download from [Device Art Generator](http://developer.android.com/distribute/promote/device-art.html) and [android-ui-utils project](http://android-ui-utils.googlecode.com).
 
-All iPhone and iPad image download from [Pixeden.com](http://www.pixeden.com) 
+All iPhone and iPad image download from [Pixeden.com](http://www.pixeden.com)
